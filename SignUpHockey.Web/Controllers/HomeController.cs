@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SignUpHockey.Data;
+using SignUpHockey.Web.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,21 +12,32 @@ namespace SignUpHockey.Web.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            var ivm = new IndexViewModel();
+            if (TempData["NewPlayer"] != null)
+            {
+                ivm.Player = (Player)TempData["NewPlayer"];
+            }
+            return View(ivm);
         }
-
-        public ActionResult About()
+        public ActionResult Game()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            var repo = new Repository(Properties.Settings.Default.ConStr);
+            var gvm = new GameViewModel();
+            var game = repo.UpcomingGame();
+            gvm.Game = game;
+            if(game != null)
+            {
+                gvm.FullGame = repo.PlayersForGame(game.Id).Count() == game.MaxPeople;
+            }
+            return View(gvm);
         }
-
-        public ActionResult Contact()
+        public ActionResult SignUp(Player player)
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            var repo = new Repository(Properties.Settings.Default.ConStr);
+            repo.AddPlayer(player);
+            TempData["NewPlayer"] = player;
+            return Redirect("/home/index");
         }
+
     }
 }

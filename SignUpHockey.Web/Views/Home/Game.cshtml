@@ -1,0 +1,37 @@
+﻿@using SignUpHockey.Data
+@model SignUpHockey.Web.Models.GameViewModel
+
+@if(Model.Game == null)
+{
+    <div class="row">
+        <div class="well col-md-6 col-md-offset-3">
+            <h1>Sorry! This week's game is not set up yet</h1>
+        </div>
+    </div>
+}
+else if (Model.FullGame)
+{
+    <div class="row">
+        <div class="well col-md-6 col-md-offset-3">
+            <h1>This week's game is full!</h1>
+        </div>
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="well col-md-6 col-md-offset-3">
+            <h1>Sign Up for Game on @Model.Game.Date.ToShortDateString()</h1>
+            <form method="post" action="/home/signUp">
+                <input type="text" name="firstName" placeholder="First Name" class="form-control" />
+                <br />
+                <input type="text" name="lastName" placeholder="Last Name" class="form-control" />
+                <br />
+                <input type="text" name="email" placeholder="Email" class="form-control" />
+                <br />
+                <input type="hidden" name="gameId" value="@Model.Game.Id" />
+                <button class="btn btn-success">Sign Up!</button>
+            </form>
+        </div>
+    </div>
+}

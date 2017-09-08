@@ -1,0 +1,23 @@
+﻿@using SignUpHockey.Data
+@model SignUpHockey.Web.Models.PlayersViewModel
+
+<div class="row">
+    <div class="well col-md-6 col-md-offset-3">
+        <h1>Players for the Game on</h1>
+        <select style="font-size:20px" id="gameId" class="form-control">
+            <option value="0">Date of Game</option>
+            @foreach (Game game in Model.Games)
+            {
+                <option value="@game.Id">@game.Date.ToShortDateString()</option>
+            }
+        </select>
+        <ul id="playerList">
+
+        </ul>
+    </div>
+</div>
+
+@section scripts
+{
+    <script src="~/Scripts/players.js"></script>
+}
