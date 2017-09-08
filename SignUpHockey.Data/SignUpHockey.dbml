@@ -7,7 +7,7 @@
       <Column Name="LastName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="Email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
       <Column Name="GameId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="Game_GamePlayer" Member="Game" ThisKey="GameId" OtherKey="Id" Type="Game" IsForeignKey="true" />
+      <Association Name="Game_Player" Member="Game" ThisKey="GameId" OtherKey="Id" Type="Game" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Games" Member="Games">
@@ -15,7 +15,15 @@
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="MaxPeople" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Date" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
-      <Association Name="Game_GamePlayer" Member="Players" Storage="_GamePlayers" ThisKey="Id" OtherKey="GameId" Type="Player" />
+      <Association Name="Game_Player" Member="Players" Storage="_GamePlayers" ThisKey="Id" OtherKey="GameId" Type="Player" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NotifyPlayers" Member="NotifyMes">
+    <Type Name="NotifyMe">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FirstName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="LastName" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Email" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
 </Database>

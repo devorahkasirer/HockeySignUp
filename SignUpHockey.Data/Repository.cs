@@ -50,5 +50,20 @@ namespace SignUpHockey.Data
                 return context.Games.ToList();
             }
         }
+        public void AddNotify(NotifyMe notify)
+        {
+            using (var context = new RepositoryDataContext(_connectionString))
+            {
+                context.NotifyMes.InsertOnSubmit(notify);
+                context.SubmitChanges();
+            }
+        }
+        public IEnumerable<NotifyMe> NotifyAll()
+        {
+            using (var context = new RepositoryDataContext())
+            {
+                return context.NotifyMes.ToList();
+            }
+        }
     }
 }

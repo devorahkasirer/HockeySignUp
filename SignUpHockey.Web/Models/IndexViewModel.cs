@@ -9,5 +9,6 @@ namespace SignUpHockey.Web.Models
     public class IndexViewModel
     {
         public Player Player { get; set; }
+        public NotifyMe Notify { get; set; }
     }
 }

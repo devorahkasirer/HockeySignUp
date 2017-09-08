@@ -17,6 +17,10 @@ namespace SignUpHockey.Web.Controllers
             {
                 ivm.Player = (Player)TempData["NewPlayer"];
             }
+            if (TempData["NotifyMe"] != null)
+            {
+                ivm.Notify = (NotifyMe)TempData["NotifyMe"];
+            }
             return View(ivm);
         }
         public ActionResult Game()
@@ -38,6 +42,17 @@ namespace SignUpHockey.Web.Controllers
             TempData["NewPlayer"] = player;
             return Redirect("/home/index");
         }
-
+        public ActionResult Notify()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Notify(NotifyMe notifyMe)
+        {
+            var repo = new Repository(Properties.Settings.Default.ConStr);
+            repo.AddNotify(notifyMe);
+            TempData["NotifyMe"] = notifyMe;
+            return Redirect("/home/index");
+        }
     }
 }

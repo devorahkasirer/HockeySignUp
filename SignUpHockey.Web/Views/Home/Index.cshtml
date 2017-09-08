@@ -7,10 +7,17 @@
         @Model.Player.FirstName @Model.Player.LastName is added to this week's game!
     </div>
 }
+@if (Model.Notify != null)
+{
+    <div class="alert well">
+        @Model.Notify.FirstName @Model.Notify.LastName is signed up for notifications!
+    </div>
+}
 
 <div class="row">
     <div class="col-md-6 col-md-offset-3 well">
         <h1>Welcome to the Hockey Signup</h1>
+        <a class="btn btn-primary" href="/home/Notify">Sign Up for Notifications</a>
         <a class="btn btn-primary" href="/home/Game">Sign Up for this Week's Game</a>
     </div>
 </div>
