@@ -17,7 +17,7 @@ namespace SignUpHockey.Data
         {
             using (var context = new RepositoryDataContext(_connectionString))
             {
-                return context.Games.FirstOrDefault(g => g.Date > DateTime.Now);
+                return context.Games.FirstOrDefault(g => g.Date > DateTime.Now && g.Date <= DateTime.Now.AddDays(7));
             }
         }
         public IEnumerable<Player> PlayersForGame(int gameId)

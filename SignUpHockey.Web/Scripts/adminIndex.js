@@ -9,7 +9,7 @@
         var max = $('#maxPeople').val();
         var date = $('#date').val();
         $.post("/admin/addGame", { maxPeople: max, date: date }, function (result) {
-            $('#top').prepend(`<div class="alert well">New Game on ${result.gameDate} Added!</div>`)
+            $('#top').prepend(`<div class="alert well">Game on ${result.gameDate} Added!</div>`)
             $('.modal').modal('hide');
         });
     });

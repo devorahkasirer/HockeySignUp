@@ -24,7 +24,7 @@ namespace SignUpHockey.Web.Controllers
             var Notifies = repo.NotifyAll();
             foreach (NotifyMe nm in Notifies)
             {
-                SendEmails(nm.Email, nm.FirstName + " " + nm.LastName);
+                //SendEmails(nm.Email, nm.FirstName + " " + nm.LastName);
             }
             return Json(new
             {
